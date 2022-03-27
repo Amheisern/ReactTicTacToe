@@ -55,7 +55,7 @@ export function App() {
     )
     if (response.ok) {
       // Get the response as JSON
-      const newGameState = await response.json()
+      const newGameState = (await response.json()) as Game
       // Make that the new state!
       setGame(newGameState)
     }
