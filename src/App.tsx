@@ -1,6 +1,13 @@
 import React, { useState } from 'react'
+type Square = 'X' | 'O' | ' '
+type Row = [Square, Square, Square]
+type Game = {
+  board: [Row, Row, Row]
+  id: null | number
+  winner: null | string
+}
 export function App() {
-  const [game, setGame] = useState({
+  const [game, setGame] = useState<Game>({
     board: [
       [' ', ' ', ' '],
       [' ', ' ', ' '],
@@ -32,7 +39,7 @@ export function App() {
     })
     if (response.ok) {
       // Get the response as JSON
-      const newGameState = await response.json()
+      const newGameState = (await response.json()) as Game
       // Make that the new state!
       setGame(newGameState)
     }
@@ -66,6 +73,7 @@ export function App() {
             return (
               <li
                 key={columnIndex}
+                className={cell === ' ' ? undefined : 'taken'}
                 onClick={() => handleClickCell(rowIndex, columnIndex)}
               >
                 {cell}
