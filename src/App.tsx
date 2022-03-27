@@ -10,6 +10,16 @@ export function App() {
     winner: null,
   })
   async function handleClickCell(row: number, column: number) {
+    if (
+      // No game id
+      game.id === null ||
+      // A winner exists
+      game.winner ||
+      // The space isn't blank
+      game.board[row][column] !== ' '
+    ) {
+      return
+    }
     // Generate the URL we need
     const url = `https://sdg-tic-tac-toe-api.herokuapp.com/game/${game.id}`
     // Make an object to send as JSON
@@ -43,11 +53,12 @@ export function App() {
       setGame(newGameState)
     }
   }
-
+  const header = game.winner ? `${game.winner} is the winner` : 'Tic Tac Toe'
   return (
     <div>
       <h1>
-        Tic Tac Toe - {game.id} <button onClick={handleNewGame}>New</button>
+        {header} - {game.id}
+        <button onClick={handleNewGame}>New</button>
       </h1>
       <ul>
         <li onClick={() => handleClickCell(0, 0)}>{game.board[0][0]}</li>
@@ -63,3 +74,18 @@ export function App() {
     </div>
   )
 }
+// Code to do away with repeated code of <li>
+// <ul>
+// {game.board.map((boardRow, rowIndex) => {
+// return boardRow.map((cell, columnIndex) => {
+// return (
+// <li
+// key={columnIndex}
+// onClick={() => handleClickCell(rowIndex, columnIndex)}
+// >
+// {cell}
+// </li>
+// )
+// })
+// })}
+// </ul>
