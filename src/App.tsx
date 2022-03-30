@@ -70,14 +70,20 @@ export function App() {
       <ul>
         {game.board.map((boardRow, rowIndex) => {
           return boardRow.map((cell, columnIndex) => {
-            return (
-              <li
-                key={columnIndex}
-                className={cell === ' ' ? undefined : 'taken'}
-                onClick={() => handleClickCell(rowIndex, columnIndex)}
-              >
-                {cell}
-              </li>
+            return (<Cell
+              key={columnIndex}
+              cell={cell}
+              rowIndex={rowIndex}
+              columnIndex={columnIndex}
+                      />
+              
+              // <li
+              //   key={columnIndex}
+              //   className={cell === ' ' ? undefined : 'taken'}
+              //   onClick={() => handleClickCell(rowIndex, columnIndex)}
+              // >
+              //   {cell}
+              // </li>
             )
           })
         })}
@@ -85,6 +91,15 @@ export function App() {
     </div>
   )
 }
+//react flow add on
+export function Cell(props) {
+return (
+<li
+className={props.cell === ' ' ? '' : 'taken'}
+onClick={() => handleClickCell(props.rowIndex, props.columnIndex)}
+>
+{props.cell}
+</li>
 // Code to do away with repeated code of <li>
 // <ul>
 // {game.board.map((boardRow, rowIndex) => {
