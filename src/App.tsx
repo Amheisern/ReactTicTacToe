@@ -93,7 +93,8 @@ export function App() {
   )
 }
 //react flow add on
-export function Cell(props) {
+type CellProps = { cell: string; rowIndex: number; columnIndex: number }
+export function Cell(props: CellProps) {
   return (
     <li
       className={props.cell === ' ' ? '' : 'taken'}
