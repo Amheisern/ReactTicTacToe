@@ -95,11 +95,9 @@ export function App() {
 //react flow add on
 type CellProps = { cell: string; rowIndex: number; columnIndex: number }
 export function Cell(props: CellProps) {
+  function handleClickCell() {}
   return (
-    <li
-      className={props.cell === ' ' ? '' : 'taken'}
-      onClick={() => handleClickCell(props.rowIndex, props.columnIndex)}
-    >
+    <li className={props.cell === ' ' ? '' : 'taken'} onClick={handleClickCell}>
       {props.cell}
     </li>
   )
