@@ -16,7 +16,7 @@ export function App() {
     id: null,
     winner: null,
   })
-  async function handleClickCell(row: number, column: number) {
+  async function recordMove(row: number, column: number) {
     if (
       // No game id
       game.id === null ||
@@ -73,9 +73,11 @@ export function App() {
             return (
               <Cell
                 key={columnIndex}
-                cell={cell}
+                // cell={cell}
                 rowIndex={rowIndex}
                 columnIndex={columnIndex}
+                cell={game.board[rowIndex][columnIndex]}
+                recordMove={recordMove}
               />
 
               // <li
@@ -93,9 +95,16 @@ export function App() {
   )
 }
 //react flow add on
-type CellProps = { cell: string; rowIndex: number; columnIndex: number }
+type CellProps = {
+  cell: string
+  rowIndex: number
+  columnIndex: number
+  recordMove: (row: number, column: number) => void
+}
 export function Cell(props: CellProps) {
-  function handleClickCell() {}
+  function handleClickCell() {
+    props.recordMove(props.rowIndex, props.columnIndex)
+  }
   return (
     <li className={props.cell === ' ' ? '' : 'taken'} onClick={handleClickCell}>
       {props.cell}
