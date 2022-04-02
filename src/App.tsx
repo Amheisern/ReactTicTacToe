@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Cell } from './Cell'
 type Square = 'X' | 'O' | ' '
 type Row = [Square, Square, Square]
 type Game = {
@@ -94,46 +95,3 @@ export function App() {
     </div>
   )
 }
-//react flow add on
-type CellProps = {
-  cell: string
-  rowIndex: number
-  columnIndex: number
-  recordMove: (row: number, column: number) => void
-}
-export function Cell(props: CellProps) {
-  function handleClickCell() {
-    props.recordMove(props.rowIndex, props.columnIndex)
-  }
-  return (
-    <li className={props.cell === ' ' ? '' : 'taken'} onClick={handleClickCell}>
-      {props.cell}
-    </li>
-  )
-}
-// Code to do away with repeated code of <li>
-// <ul>
-// {game.board.map((boardRow, rowIndex) => {
-// return boardRow.map((cell, columnIndex) => {
-// return (
-// <li
-// key={columnIndex}
-// onClick={() => handleClickCell(rowIndex, columnIndex)}
-// >
-// {cell}
-// </li>
-// )
-// })
-// })}
-// </ul>
-//  <ul>
-//    <li onClick={() => handleClickCell(0, 0)}>{game.board[0][0]}</li>
-//    <li onClick={() => handleClickCell(0, 1)}>{game.board[0][1]}</li>
-//    <li onClick={() => handleClickCell(0, 2)}>{game.board[0][2]}</li>
-//    <li onClick={() => handleClickCell(1, 0)}>{game.board[1][0]}</li>
-//    <li onClick={() => handleClickCell(1, 1)}>{game.board[1][1]}</li>
-//    <li onClick={() => handleClickCell(1, 2)}>{game.board[1][2]}</li>
-//    <li onClick={() => handleClickCell(2, 0)}>{game.board[2][0]}</li>
-//    <li onClick={() => handleClickCell(2, 1)}>{game.board[2][1]}</li>
-//    <li onClick={() => handleClickCell(2, 2)}>{game.board[2][2]}</li>
-//  </ul>
