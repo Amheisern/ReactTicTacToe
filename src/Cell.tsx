@@ -5,7 +5,7 @@ type CellProps = {
   cell: string
   rowIndex: number
   columnIndex: number
-  recordMove: (row: number, column: number) => void
+  recordMove: (_row: number, _column: number) => void
 }
 export function Cell({ cell, rowIndex, columnIndex, recordMove }: CellProps) {
   // This code allows for the deletion of .props repetition
