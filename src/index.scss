@@ -1,12 +1,4 @@
 :root {
-  /* CSS Variables for all the font colors and sizes. Try changing these! */
-  --header-background: #5661b3;
-  --header-text-color: #fff9c2;
-  --header-font-size: 2rem;
-  --square-font-size: calc(8 * var(--header-font-size));
-  --square-text-color: #5661b3;
-  --square-background-color: #e6e8ff;
-  --square-border: 3px solid var(--square-text-color);
   font: 16px / 1 sans-serif;
   --easy-cell-size: 3rem;
   --easy-board-size: 8;
@@ -17,12 +9,12 @@
   --hard-cell-size: 1.5rem;
   --hard-board-size: 24;
 }
-html {
-  height: 100%;
-}
-body {
+div {
+  list-style: none;
   margin: 0;
-  min-height: 100%;
+  padding: 0;
+  display: grid;
+  height: 100%;
 }
 h1 {
   /* center the header */
@@ -39,30 +31,31 @@ h1 {
   background-color: var(--header-background);
 }
 ul,
-li {
+button {
   /* Be gone margins! */
   margin: 0;
   padding: 0;
-  /* and list styles */
-  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-ul.difficult-0 {
+ul.difficulty-0 {
   grid-template-columns: repeat(var(--easy-board-size), 1fr);
   grid-template-rows: repeat(var(--easy-board-size), 1fr);
-  width: calc(var(--easy-cell-size) * var(--easy-board-size));
-  height: calc(var(--easy-cell-size) * var(--easy-board-size));
+  width: calc(var(--easy-board-size) * var(--easy-cell-size));
+  height: calc(var(--easy-board-size) * var(--easy-cell-size));
 }
-ul.difficult-1 {
+ul.difficulty-1 {
   grid-template-columns: repeat(var(--medium-board-size), 1fr);
   grid-template-rows: repeat(var(--medium-board-size), 1fr);
-  width: calc(var(--medium-cell-size) * var(--medium-board-size));
+  width: calc(var(--medium-board-size) * var(--medium-cell-size));
 }
-ul.difficult-2 {
+ul.difficulty-2 {
   grid-template-columns: repeat(var(--hard-board-size), 1fr);
   grid-template-rows: repeat(var(--hard-board-size), 1fr);
-  width: calc(var(--hard-cell-size) * var(--hard-board-size));
+  width: calc(var(--hard-board-size) * var(--hard-cell-size));
 }
-ul buton {
+ul button {
   /* Use a monospace font */
   font-family: monospace;
   font-size: var(--square-font-size);
