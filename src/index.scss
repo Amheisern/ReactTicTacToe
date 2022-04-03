@@ -1,20 +1,20 @@
 :root {
+  /* CSS Variables for all the font colors and sizes. Try changing these! */
+  --header-background: #5661b3;
+  --header-text-color: #fff9c2;
+  --header-font-size: 2rem;
+  --square-font-size: calc(8 * var(--header-font-size));
+  --square-text-color: #5661b3;
+  --square-background-color: #e6e8ff;
+  --square-border: 3px solid var(--square-text-color);
   font: 16px / 1 sans-serif;
-  --easy-cell-size: 3rem;
-  --easy-board-size: 8;
-
-  --medium-cell-size: 2rem;
-  --medium-board-size: 16;
-
-  --hard-cell-size: 1.5rem;
-  --hard-board-size: 24;
 }
-div {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
+html {
   height: 100%;
+}
+body {
+  margin: 0;
+  min-height: 100%;
 }
 h1 {
   /* center the header */
@@ -31,31 +31,25 @@ h1 {
   background-color: var(--header-background);
 }
 ul,
-button {
+li {
   /* Be gone margins! */
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* and list styles */
+  list-style: none;
 }
-ul.difficulty-0 {
-  grid-template-columns: repeat(var(--easy-board-size), 1fr);
-  grid-template-rows: repeat(var(--easy-board-size), 1fr);
-  width: calc(var(--easy-board-size) * var(--easy-cell-size));
-  height: calc(var(--easy-board-size) * var(--easy-cell-size));
+ul {
+  /* Make the height of the list equal to the height of the page MINUS the height taken by the header */
+  height: calc(100vh - 3 * var(--header-font-size));
+  /* Display the list as a 3 column and three row grid */
+  display: grid;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+  /* Add a little gap between to allow the background color through */
+  gap: 1rem;
+  /* Set the background color that will show through the gap */
+  background-color: var(--square-text-color);
 }
-ul.difficulty-1 {
-  grid-template-columns: repeat(var(--medium-board-size), 1fr);
-  grid-template-rows: repeat(var(--medium-board-size), 1fr);
-  width: calc(var(--medium-board-size) * var(--medium-cell-size));
-}
-ul.difficulty-2 {
-  grid-template-columns: repeat(var(--hard-board-size), 1fr);
-  grid-template-rows: repeat(var(--hard-board-size), 1fr);
-  width: calc(var(--hard-board-size) * var(--hard-cell-size));
-}
-ul button {
+ul li {
   /* Use a monospace font */
   font-family: monospace;
   font-size: var(--square-font-size);
@@ -71,12 +65,12 @@ ul button {
   min-width: 3rem;
   min-height: 10rem;
 }
-ul button.taken {
+ul li.taken {
   cursor: not-allowed;
 }
-ul button.small {
+ul li.small {
   font-size: 4rem;
 }
-ul button.not-allowed-click {
+ul li.not-allowed-click {
   background-color: red;
 }
