@@ -8,6 +8,14 @@
   --square-background-color: #e6e8ff;
   --square-border: 3px solid var(--square-text-color);
   font: 16px / 1 sans-serif;
+  --easy-cell-size: 3rem;
+  --easy-board-size: 8;
+
+  --medium-cell-size: 2rem;
+  --medium-board-size: 16;
+
+  --hard-cell-size: 1.5rem;
+  --hard-board-size: 24;
 }
 html {
   height: 100%;
@@ -38,18 +46,23 @@ li {
   /* and list styles */
   list-style: none;
 }
-ul {
-  /* Make the height of the list equal to the height of the page MINUS the height taken by the header */
-  height: calc(100vh - 3 * var(--header-font-size));
-  /* Display the list as a 3 column and three row grid */
-  display: grid;
-  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-  /* Add a little gap between to allow the background color through */
-  gap: 1rem;
-  /* Set the background color that will show through the gap */
-  background-color: var(--square-text-color);
+ul.difficult-0 {
+  grid-template-columns: repeat(var(--easy-board-size), 1fr);
+  grid-template-rows: repeat(var(--easy-board-size), 1fr);
+  width: calc(var(--easy-cell-size) * var(--easy-board-size));
+  height: calc(var(--easy-cell-size) * var(--easy-board-size));
 }
-ul li {
+ul.difficult-1 {
+  grid-template-columns: repeat(var(--medium-board-size), 1fr);
+  grid-template-rows: repeat(var(--medium-board-size), 1fr);
+  width: calc(var(--medium-cell-size) * var(--medium-board-size));
+}
+ul.difficult-2 {
+  grid-template-columns: repeat(var(--hard-board-size), 1fr);
+  grid-template-rows: repeat(var(--hard-board-size), 1fr);
+  width: calc(var(--hard-cell-size) * var(--hard-board-size));
+}
+ul buton {
   /* Use a monospace font */
   font-family: monospace;
   font-size: var(--square-font-size);
@@ -65,12 +78,12 @@ ul li {
   min-width: 3rem;
   min-height: 10rem;
 }
-ul li.taken {
+ul button.taken {
   cursor: not-allowed;
 }
-ul li.small {
+ul button.small {
   font-size: 4rem;
 }
-ul li.not-allowed-click {
+ul button.not-allowed-click {
   background-color: red;
 }
